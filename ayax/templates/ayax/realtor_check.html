@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type"
+    content="text/html"; charset="utf-8">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+    href="{%static 'ayax/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<title>Список риэлторов - Аякс</title>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="brand">
+	</div>
+	<div class="sticky">
+		<h1><a href="/ayax/">Вернуться в меню</a></h1>
+    </div>
+ 
+	<h1 class="list">Список риэлторов:</h1>
+	{% block content %}
+	{% for Realtor in Realtors %}
+	
+	<div class="realtors">
+	<span>	
+		<h2><a class="golink" href="{% url 'edit' pk=Realtor.pk %}">{{ Realtor.surname }} {{ Realtor.name }}</a></h2> 
+		<h2><p>Подразделение: {{ Realtor.subdivision }}</p> 
+		<script type="text/javascript">
+			jQuery(function($) {
+				$(".golink").click(function() {
+					return false;
+				}).dblclick(function() {
+					window.location = this.href;
+					return false;
+				});
+			});
+		</script>
+
+		<p>Зарегистрирован: {{ Realtor.registered|date:"d.m.Y H:i:s" }}</p></h2>
+	    <h2><a href="{% url 'delete' pk=Realtor.pk %}">Удалить</a></h2>
+
+	</span>
+	</div>
+	{% endfor %}
+    {% endblock %}
+	<h2><div>
+		{% if page.has_previous %}
+		<a href="?page={{ page.previous_page_number }}">&lt;</a>
+		&nbsp;&nbsp;|&nbsp;&nbsp;
+		{% endif %}
+		Страница {{ page.number }} из {{ page.paginator.num_pages }}
+		{% if page.has_next %}
+		&nbsp;&nbsp;|&nbsp;&nbsp;
+		<a href="?page={{ page.next_page_number }}">&gt;</a>
+		{% endif %}
+	</div></h2>
+</body>
+</html>

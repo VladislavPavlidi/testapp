@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type"
+    content="text/html"; charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+    href="{%static 'ayax/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<title>Список риэлторов - Аякс</title>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="brand">
+	</div>
+	<div class="sticky">
+		<h1><a href="/ayax/">Вернуться в меню</a></h1>
+    </div>
+	<h1 class="list">Поиск<h1>
+	
+	<div class='search_place'>
+	<form action="{% url 'search' %}" class="navbar-form navbar-left" method="GET">
+		<input name="q" value="{{ request.GET.q }}" placeholder="искать...">
+		    <button type="submit">
+		    		Найти
+		    </button>          
+    </form>
+    </div>
+    <h2>aaa</h2>
+    {% for Realtor in Realtors %}
+	<div class="realtors">
+	<span>	
+		<h2><a href="{% url 'edit' pk=Realtor.pk %}" class="DoubleClick">{{ Realtor.surname }} {{ Realtor.name }}</a></h2> 
+		<p>Подразделение: {{ Realtor.subdivision }}</p> 
+		<p>Зарегистрирован: {{ Realtor.registered|date:"d.m.Y H:i:s" }}</p>
+	</span>
+	</div>
+	{% endfor %}
+
+	
+
+</body>
+</html>

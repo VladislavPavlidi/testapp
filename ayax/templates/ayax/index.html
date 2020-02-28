@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type"
+    content="text/html"; charset="utf-8">
+    <link rel="stylesheet" type="text/css"
+    href="{%static 'ayax/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<title>Аякс</title>
+</head>
+<body>
+	<div class="header"></div>
+	<div class="brand">
+		<div class="pic"></div>
+	</div>
+	<div class=content>
+		<div class="burger">
+			<button class="dropbtn">Меню</button>
+			<div class="burger-content">	
+		    <a href="{% url 'add' %}">Новый риэлтор</a>
+		    <a href="{% url 'realtor_check' %}">Список Риэлторов</a>
+
+		    <form action="{% url 'search' %}" class="navbar-form navbar-left" method="GET">
+		    	<input name="q" value="{{ request.GET.q }}" placeholder="Поиск..">
+		    	<button type="submit">
+		    		Найти
+		    	</button>
+           
+            </form>
+	    </div>
+	</div>	
+</body>
+</html>

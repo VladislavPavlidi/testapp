@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type"
+    content="text/html"; charset="utf-8">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+    href="{%static 'ayax/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<title>Удаление риэлтора - Аякс</title>
+</head>
+<body>
+	{% block content %}
+	<div class="header"></div>
+	<div class="brand">
+	</div>
+	<h1 class="list">Удаление риэлтора</h1>
+	<div class="sticky">
+		<h1><a href="/ayax/realtors/">Назад</a></h1>
+    </div>
+	<form class="list" method="post">
+		{% csrf_token %}
+		<h3><input onclick="confirmDelete()" type="submit" value="Удалить"></h3>
+	</form>
+	<script type="text/javascript">
+	function confirmDelete() {
+		alert("Уверены, что хотите удалить?")
+	}
+    </script>
+    {% endblock %}
+</body>
+</html>
